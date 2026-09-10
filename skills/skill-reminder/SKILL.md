@@ -1,6 +1,7 @@
 ---
 name: skill-reminder
 description: Remind an AI agent about installed manual skills that are relevant to the current task without automatically invoking or installing them. Use at the start of substantial development, debugging, review, planning, research, documentation, or workflow tasks when the runtime exposes a skill inventory.
+license: MIT
 ---
 
 # Skill Reminder

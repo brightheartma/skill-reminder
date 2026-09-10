@@ -30,10 +30,10 @@ Keep the skill agent-agnostic. Do not turn one platform's installation paths, in
 
 ## Validation
 
-Run the skill validator before submitting changes:
+Run the repository checks before submitting changes:
 
 ```bash
-python3 path/to/quick_validate.py skills/skill-reminder
+./scripts/check_skill.sh
 ```
 
-Use the `quick_validate.py` script from the skill-creator tooling available in your agent environment. If the validator cannot run because a local dependency is missing, report that in the pull request and include the equivalent manual checks you performed.
+If your agent environment includes the skill-creator validator, you may also run its `quick_validate.py` script. If that optional validator cannot run because a local dependency is missing, report that in the pull request and include the repository check output.

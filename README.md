@@ -1,6 +1,8 @@
 # Skill Reminder
 
 [![skills.sh](https://skills.sh/b/brightheartma/skill-reminder)](https://skills.sh/brightheartma/skill-reminder)
+[![Validate skills](https://github.com/brightheartma/skill-reminder/actions/workflows/validate.yml/badge.svg)](https://github.com/brightheartma/skill-reminder/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **A small, agent-agnostic skill that reminds AI agents when an already-installed manual skill is relevant.**
 
@@ -59,7 +61,7 @@ Skill Reminder 是一个面向 AI Agent 的轻量级路由 Skill。它会在当�
 使用兼容的 `skills` CLI：
 
 ```bash
-npx skills add brightheartma/skill-reminder
+npx skills add brightheartma/skill-reminder --skill skill-reminder -g
 ```
 
 不同 Agent 对 Skill 的发现和安装位置可能不同。请以目标 Agent 的文档为准；本仓库的核心内容是标准 `SKILL.md`，`agents/openai.yaml` 只是可选的产品元数据，不应被视为所有 Agent 都必须支持的配置。
@@ -73,6 +75,16 @@ Use $skill-reminder to identify which installed skills are relevant to this task
 ```
 
 Skill Reminder 只负责提示。是否调用 `$tdd`、`$code-review` 或其他手动 Skill，仍由用户或当前 Agent 按各自的调用规则决定。
+
+### 验证与评测
+
+运行仓库自带的结构检查：
+
+```bash
+./scripts/check_skill.sh
+```
+
+行为评测用例和预期结果见 [EVALS.md](EVALS.md)。它覆盖应该提醒、应该保持安静、避免重复提醒以及 Skill 清单不可见等情况。
 
 ### 兼容性
 
@@ -176,7 +188,7 @@ It should stay quiet for greetings, simple factual questions, trivial edits, and
 Use a compatible `skills` CLI:
 
 ```bash
-npx skills add brightheartma/skill-reminder
+npx skills add brightheartma/skill-reminder --skill skill-reminder -g
 ```
 
 Installation locations and discovery behavior vary by agent. Follow the target agent's documentation. The portable core of this repository is `SKILL.md`; `agents/openai.yaml` is optional product metadata and is not required by every runtime.
@@ -190,6 +202,16 @@ Use $skill-reminder to identify which installed skills are relevant to this task
 ```
 
 Skill Reminder only surfaces candidates. The user or the current agent still decides whether to invoke `$tdd`, `$code-review`, or another manual skill according to that skill's own policy.
+
+### Validation and evaluation
+
+Run the repository's structural checks:
+
+```bash
+./scripts/check_skill.sh
+```
+
+See [EVALS.md](EVALS.md) for behavioral evaluation prompts and expected outcomes. The cases cover positive reminders, quiet cases, duplicate suppression, and runtimes that cannot expose a skill inventory.
 
 ### Compatibility
 
@@ -249,4 +271,4 @@ Its goal is simple: give a timely, concise reminder when a useful installed skil
 
 ## License
 
-No license has been selected yet. Until a license is added, the repository is public for inspection and discussion only; reuse should not be assumed.
+This project is licensed under the [MIT License](LICENSE).
