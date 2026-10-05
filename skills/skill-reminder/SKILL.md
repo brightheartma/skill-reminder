@@ -1,6 +1,6 @@
 ---
 name: skill-reminder
-description: Remind an AI agent about installed manual skills that are relevant to the current task without automatically invoking or installing them. Use at the start of substantial development, debugging, review, planning, research, documentation, or workflow tasks when the runtime exposes a skill inventory.
+description: Remind the user about relevant installed skills at the start of substantial tasks and when development moves into implementation, PR preparation, or completion and retrospective. Discover manual skills through local metadata; reminders do not invoke or install them.
 license: MIT
 ---
 
@@ -21,10 +21,18 @@ Stay quiet for greetings, simple factual questions, trivial edits, or tasks with
 
 Do not treat a reminder as a reason to delay the task or ask a new question. If there is no strong match, continue normally.
 
+Reassess relevant skills when the current task reaches a phase transition, including within a long-running session:
+
+- **Implementation begins**: when a spec and its tickets are ready, consider `implement-spec` for implementing the whole spec with parallel agents.
+- **PR preparation begins**: when writing a PR body, consider `pr` for the summary, before/after evidence, and merge risk.
+- **Development ends or a difficult run is being wrapped up**: consider `retro` for improving the agent's environment based on the session.
+
+Apply the existing availability and repetition rules below. A phase transition prompts a reassessment, not an automatic invocation or a reminder on every turn.
+
 ## How to find candidates
 
 1. Use the skill names and descriptions already exposed by the host when available.
-2. If the host exposes an installed-skill directory or registry, inspect metadata/frontmatter first. Do not read every full skill body just to decide whether a reminder is useful.
+2. At task start and the phase transitions above, also check metadata/frontmatter in the host's installed-skill directory or registry for relevant manual skills omitted from the exposed inventory. Include explicit-only skills such as `implement-spec` and `retro` when installed and applicable. Cache discovered metadata for the current task; refresh it after an installation or update, or if a candidate's availability is uncertain. Read full skill bodies only when needed to use a selected skill.
 3. Recommend only skills that are actually available. Never invent a skill name from memory.
 4. Identify skills that are manual or explicit-only from the host's metadata, frontmatter, or invocation policy. If the host does not expose that distinction, describe the recommendation as optional and ask the user to invoke it explicitly.
 5. Prefer the smallest useful set: normally one to three skills, ordered by confidence.
